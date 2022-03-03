@@ -48,7 +48,7 @@ def gerar_email():
 def link_codigo(email):
     try:
         mail = secmail.SecMail()
-        sleep(2)
+        sleep(3)
         inbox = mail.get_messages(email)
         for Id in inbox.id:
             msg = mail.read_message(email=email, id=Id).htmlBody
