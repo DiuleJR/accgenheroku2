@@ -14,3 +14,4 @@ pyshorteners==1.0.1
 names==0.3.0
 pyfiglet==0.8.post1
 json_minify
+flask
