@@ -1,9 +1,0 @@
-key = '95fd8d7f-8d53-42c7-a22f-c0d7ea84bb43'
-app_name = "testeee4"
-deviceid = "328D05319C78CCD2514FA244459E8CABBAFE3C8EC5EFB30655A50B12CEFC9F72DE4F430E6DF2710133"
-emaill = "u3355w5l@1secmail.net"
-passwordd = "23051401@"
-custompwd = "23051401@"
-url = "https://salvarcontas.0010101001101001010100101001.repl.co"
-chatlink = "http://aminoapps.com/p/3ng0l4"
-nickname = "Xmega11OLOCO"

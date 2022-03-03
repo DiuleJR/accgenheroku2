@@ -1,13 +1,30 @@
-import amino, string, random, secmail
-import os
-import json
-import threading
-import requests
-import wget
-import heroku3
-from new import emaill, passwordd, custompwd, chatlink, key, app_name, deviceid, nickname, url
-from time import sleep
+password = "23051401@"  # <---Mude a senha
+
+import requests, random, string, secmail, pyshorteners, amino, names, json
 from bs4 import BeautifulSoup
+from time import sleep
+from amino.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCode, ServiceUnderMaintenance
+from pyfiglet import figlet_format
+from urllib.request import urlopen
+
+abertura = figlet_format("a c c g e n  X\n       p t - b r")
+print(abertura)
+
+
+# ===============Funções==================
+def nome_aleatorio():
+    nome = ''
+    for i in names.get_first_name():
+        nome += i
+    return nome
+
+
+def api(url):
+    return requests.post("https://api-xmega11.herokuapp.com/", data={"text": url}).json()['captcha']
+
+
+def deviceId():
+    return requests.get("http://forevercynical.com/generate/deviceid").text
 
 
 def gerar_aleatorio(size=16, chars=string.ascii_letters + string.digits):
@@ -19,48 +36,10 @@ def gerar_email():
     return email
 
 
-def deviceId():
-    return requests.get("https://device-xmega.herokuapp.com/").text
-
-
-def restart():
-    heroku_conn = heroku3.from_key(key)
-    botapp = heroku_conn.apps()[app_name]
-    botapp.restart()
-
-
-def send(data):
-    requests.post(f"{url}/save", data=data)
-
-
-client = amino.Client(deviceid)
-client.login(emaill, passwordd)
-bb = client.get_from_code(chatlink)
-chatId = bb.objectId
-cid = bb.path[1:bb.path.index("/")]
-client.join_community(cid)
-sub = amino.SubClient(comId=cid, profile=client.profile)
-sub.join_chat(chatId)
-
-
-def find():
-    while True:
-        p = sub.get_chat_messages(chatId=chatId, size=1).content
-        # print(p)
-        for j in p:
-            g = j
-        # print(g)
-        l = f"{g}"
-        length = str(len(l))
-        if "6" == length:
-            break
-    return g
-
-
 def link_codigo(email):
     try:
         mail = secmail.SecMail()
-        sleep(3)
+        sleep(2)
         inbox = mail.get_messages(email)
         for Id in inbox.id:
             msg = mail.read_message(email=email, id=Id).htmlBody
@@ -73,68 +52,91 @@ def link_codigo(email):
         pass
 
 
-password = custompwd
-de = deviceId()
-client = amino.Client(de)
-for _ in range(3):
-    try:
-        os.remove("code.png")
-    except:
-        pass
-    dev = client.device_id
-    email = gerar_email()
-    print(email)
-    client.request_verify_code(email=email)
-    link = client.get_message(email)
-    wget.download(url=link, out="code.png")
-    with open("code.png", "rb") as file:
-        sub.send_message(chatId=chatId, fileType="image", file=file)
-    p = sub.get_chat_messages(chatId=chatId, size=1).content
-    code = find()
+def encurtar_link(link):
+    ps = pyshorteners.Shortener()
+    return ps.tinyurl.short(fr"{link}")
+
+
+def salvar(data):
+    requests.post("https://salvarcontas.0010101001101001010100101001.repl.co/save", data=data)
+
+
+# ==================Gerador=============================
+print("[\033[1;31mAtenção\033[m] \033[1;33mVocê pode criar somente 5 contas por VPN\033[m")
+contador = 0
+
+while True:
 
     try:
-        client.register(email=email, password=password, nickname=nickname, verificationCode=code, deviceId=dev)
-        sub.send_message(chatId=chatId, message="vercel")
-        d = {}
-        d["email"] = str(email)
-        d["password"] = str(password)
-        d["device"] = str(dev)
-        t = json.dumps(d)
-        data = {"data": t}
-        send(data)
-    except Exception as l:
-        print(l)
-        pass
+        with open("device.json", "w") as f:
+            f.close()
 
-de = deviceId()
-client = amino.Client(de)
-for _ in range(2):
-    try:
-        os.remove("code.png")
-    except:
-        pass
-    dev = deviceId()
-    email = gerar_email()
-    print(email)
-    client.request_verify_code(email=email)
-    link = client.get_message(email)
-    wget.download(url=link, out="code.png")
-    with open("code.png", "rb") as file:
-        sub.send_message(chatId=chatId, fileType="image", file=file)
-    code = find()
+        if contador == 5:
+            print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê criou 5 contas, mude o VPN!")
+            contador = 0
+            break
 
-    try:
-        client.register(email=email, password=password, nickname=nickname, verificationCode=code, deviceId=dev)
-        sub.send_message(chatId=chatId, message="vercel")
-        d = {}
-        d["email"] = str(email)
-        d["password"] = str(password)
-        d["device"] = str(dev)
-        t = json.dumps(d)
-        data = {"data": t}
-        send(data)
-    except Exception as k:
-        print(k)
-        pass
+        client = amino.Client()
+        email = gerar_email()
+        nickname = nome_aleatorio() + '⁹⁹⁹'
+        print(f"\n[\033[1;31mGerando email\033[m][\033[1;35m{email}\033[m][\033[1;32m{contador + 1}\033[m]")
+        client.request_verify_code(email=email)
+        link = encurtar_link(link_codigo(email))
+        print(f"[ \033[1;33mLink\033[m ] \033[1;32m{link}\033[m")
+        codigo = api(link)
 
-restart()
+        print(f"[\033[1;37mCódigo\033[m]: {codigo}")
+        # codigo = input("[\033[1;37mCódigo\033[m]: ")
+        # slk = api(link)
+        if codigo == '':
+            print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê não digitou o código, reinicie o script!")
+            break
+
+        device = deviceId()
+        client.register(nickname, email, password, codigo, device)
+        client.login(email=email, password=password)
+        # client.join_community("39276113")  # <----- Sua cid da comunidade
+        #img = urlopen(f"{link}").read()
+        #open(f"G:/AMINO COINS/FOLLOW/bd_captcha/{codigo}.png", "wb").write(img)
+
+        contador += 1
+
+        d = {
+            "email": str(email),
+            "password": str(password),
+            "device": str(device)
+            }
+
+
+
+        j = json.dumps(d)
+        data = {'data': j}
+        salvar(data)
+        print("[\033[1;32mConta salva!\033[m]")
+
+
+    except ActionNotAllowed:
+        print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
+        break
+
+    except IncorrectVerificationCode:
+        print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê digitou o código errado, reinicie o script!\033[m")
+        break
+
+    except ServiceUnderMaintenance:
+        print("\n[\033[1;31mAtenção\033[m] \033[1;33mParece que o serviço está em manutenção, tente mais tarde!")
+        break
+
+    """except:
+        print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
+        break"""
+
+
+    """with open("accounts.json", "a+") as x:
+        acc = f'\n{{\n"email": "{email}",\n"password": "{password}",\n"device": "{device}"\n}},'
+        # acc = f'\n{{\n"email": "{email}",\n"password": "{password}",\n"device": "{device}"\n}},'
+        x.write(acc)
+
+    with open("emails.txt", "a+") as c:
+        acc = f"{email}\n"
+        c.write(acc)"""

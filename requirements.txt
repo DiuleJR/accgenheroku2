@@ -1,5 +1,5 @@
-secmail
-requests
+secmail==1.0.2
+requests==2.27.1
 amino.py==3.0.3
 Click==7.0
 gunicorn==19.9.0
@@ -7,6 +7,9 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 MarkupSafe==1.1.1
 Werkzeug==0.15.6
-wget
-heroku3
-bs4
+wget==3.2
+heroku3==5.1.4
+bs4==0.0.1
+pyshorteners==1.0.1
+names==0.3.0
+pyfiglet==0.8.post1
