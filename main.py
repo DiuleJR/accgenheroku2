@@ -68,7 +68,7 @@ print("[\033[1;31mAtenção\033[m] \033[1;33mVocê pode criar somente 5 contas p
 
 app = Flask(__name__)
 
-@app.route('/', methods=["POST"])
+@app.route('/', methods=["POST", "GET"])
 def home():
     while True:
         contador = 0
@@ -120,6 +120,7 @@ def home():
             print("[\033[1;32mConta salva!\033[m]")
 
 
+
         except ActionNotAllowed:
             print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
             break
@@ -145,6 +146,7 @@ def home():
         with open("emails.txt", "a+") as c:
             acc = f"{email}\n"
             c.write(acc)"""
+
 
 def main():
     port = int(os.environ.get("PORT", 5000))
