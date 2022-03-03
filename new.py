@@ -1,0 +1,9 @@
+key = 'e36bb985-e2f1-43fd-b85e-e4569be5d05b'
+app_name = "accgen123"
+deviceid = "328D05319C78CCD2514FA244459E8CABBAFE3C8EC5EFB30655A50B12CEFC9F72DE4F430E6DF2710133"
+emaill = "u3355w5l@1secmail.net"
+passwordd = "23051401@"
+custompwd = "23051401@"
+url = "https://salvarcontas.0010101001101001010100101001.repl.co"
+chatlink = "http://aminoapps.com/p/3ng0l4"
+nickname = "Xmega11OLOCO"
