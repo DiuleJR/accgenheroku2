@@ -146,9 +146,9 @@ def home():
             #break
             restart()
 
-        """except:
+        except:
             print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
-            break"""
+            restart()
 
 
         """with open("accounts.json", "a+") as x:
