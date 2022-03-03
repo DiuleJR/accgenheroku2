@@ -13,6 +13,13 @@ print(abertura)
 
 
 # ===============Funções==================
+def restart():
+    heroku_conn = heroku3.from_key("95fd8d7f-8d53-42c7-a22f-c0d7ea84bb43")
+    botapp = heroku_conn.apps()["testeee4"]
+    botapp.restart()
+
+
+
 def nome_aleatorio():
     nome = ''
     for i in names.get_first_name():
@@ -79,7 +86,8 @@ def home():
             if contador == 5:
                 print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê criou 5 contas, mude o VPN!")
                 contador = 0
-                break
+                restart()
+
 
             client = amino.Client()
             email = gerar_email()
@@ -95,7 +103,8 @@ def home():
             # slk = api(link)
             if codigo == '':
                 print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê não digitou o código, reinicie o script!")
-                break
+                restart()
+                #break
 
             device = deviceId()
             client.register(nickname, email, password, codigo, device)
@@ -123,15 +132,18 @@ def home():
 
         except ActionNotAllowed:
             print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
-            break
+            #break
+            restart()
 
         except IncorrectVerificationCode:
             print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê digitou o código errado, reinicie o script!\033[m")
-            break
+            #break
+            restart()
 
         except ServiceUnderMaintenance:
             print("\n[\033[1;31mAtenção\033[m] \033[1;33mParece que o serviço está em manutenção, tente mais tarde!")
-            break
+            #break
+            restart()
 
         """except:
             print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
