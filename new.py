@@ -1,5 +1,5 @@
-key = 'e36bb985-e2f1-43fd-b85e-e4569be5d05b'
-app_name = "accgen123"
+key = '95fd8d7f-8d53-42c7-a22f-c0d7ea84bb43'
+app_name = "testeee4"
 deviceid = "328D05319C78CCD2514FA244459E8CABBAFE3C8EC5EFB30655A50B12CEFC9F72DE4F430E6DF2710133"
 emaill = "u3355w5l@1secmail.net"
 passwordd = "23051401@"

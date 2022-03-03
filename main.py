@@ -113,10 +113,10 @@ for _ in range(2):
         os.remove("code.png")
     except:
         pass
-    dev = client.device_id
+    dev = deviceId()
     email = gerar_email()
     print(email)
-    client.request_verify_code(email=email, dev=dev)
+    client.request_verify_code(email=email)
     link = client.get_message(email)
     wget.download(url=link, out="code.png")
     with open("code.png", "rb") as file:
