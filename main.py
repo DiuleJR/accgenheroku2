@@ -7,6 +7,7 @@ from amino.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCod
 from pyfiglet import figlet_format
 from urllib.request import urlopen
 from flask import Flask
+import heroku3
 
 abertura = figlet_format("a c c g e n  X\n       p t - b r")
 print(abertura)
