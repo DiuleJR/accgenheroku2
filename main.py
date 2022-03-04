@@ -80,8 +80,10 @@ app = Flask(__name__)
 @app.route('/', methods=["POST", "GET"])
 def home():
     while True:
-        contador = 0
+        contador = 1
         try:
+            if contador == 5:
+                restart()
             with open("device.json", "w") as f:
                 f.close()
 
@@ -114,6 +116,7 @@ def home():
             data = {'data': j}
             salvar(data)
             print("Conta salva!")
+            contador += 1
 
         except ActionNotAllowed:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
