@@ -16,7 +16,7 @@ print(abertura)
 # ===============Funções==================
 def restart():
     heroku_conn = heroku3.from_key("95fd8d7f-8d53-42c7-a22f-c0d7ea84bb43")
-    botapp = heroku_conn.apps()["gerando6"]
+    botapp = heroku_conn.apps()["herokux20"]
     botapp.restart()
 
 
