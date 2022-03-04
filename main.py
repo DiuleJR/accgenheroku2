@@ -82,7 +82,6 @@ def home():
     while True:
         contador = 0
         try:
-
             with open("device.json", "w") as f:
                 f.close()
 
