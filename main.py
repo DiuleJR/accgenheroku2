@@ -20,7 +20,6 @@ def restart():
     botapp.restart()
 
 
-
 def nome_aleatorio():
     nome = ''
     for i in names.get_first_name():
@@ -71,10 +70,12 @@ def salvar(data):
 
 
 # ==================Gerador=============================
-print("[\033[1;31mAtenção\033[m] \033[1;33mVocê pode criar somente 5 contas por VPN\033[m")
-
+print("="*60)
+print("                                  accgen X Heroku 24/7")
+print("="*60)
 
 app = Flask(__name__)
+
 
 @app.route('/', methods=["POST", "GET"])
 def home():
@@ -84,35 +85,22 @@ def home():
             with open("device.json", "w") as f:
                 f.close()
 
-            if contador == 5:
-                print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê criou 5 contas, mude o VPN!")
-                contador = 0
-                restart()
-
-
             client = amino.Client()
             email = gerar_email()
             nickname = nome_aleatorio() + '⁹⁹⁹'
-            print(f"\n[\033[1;31mGerando email\033[m][\033[1;35m{email}\033[m][\033[1;32m{contador + 1}\033[m]")
+            print(f"\nGerando email {email}")
             client.request_verify_code(email=email)
             link = encurtar_link(link_codigo(email))
-            print(f"[ \033[1;33mLink\033[m ] \033[1;32m{link}\033[m")
             codigo = api(link)
-
-            print(f"[\033[1;37mCódigo\033[m]: {codigo}")
             # codigo = input("[\033[1;37mCódigo\033[m]: ")
             # slk = api(link)
-            if codigo == '':
-                print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê não digitou o código, reinicie o script!")
-                restart()
-                #break
 
             device = deviceId()
             client.register(nickname, email, password, codigo, device)
             client.login(email=email, password=password)
             # client.join_community("39276113")  # <----- Sua cid da comunidade
-            #img = urlopen(f"{link}").read()
-            #open(f"G:/AMINO COINS/FOLLOW/bd_captcha/{codigo}.png", "wb").write(img)
+            # img = urlopen(f"{link}").read()
+            # open(f"G:/AMINO COINS/FOLLOW/bd_captcha/{codigo}.png", "wb").write(img)
 
             contador += 1
 
@@ -120,45 +108,28 @@ def home():
                 "email": str(email),
                 "password": str(password),
                 "device": str(device)
-                }
-
-
+            }
 
             j = json.dumps(d)
             data = {'data': j}
             salvar(data)
-            print("[\033[1;32mConta salva!\033[m]")
-
-
+            print("Conta salva!")
 
         except ActionNotAllowed:
-            print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
-            #break
+            # print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
             restart()
 
         except IncorrectVerificationCode:
-            print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê digitou o código errado, reinicie o script!\033[m")
-            #break
+            # print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê digitou o código errado, reinicie o script!\033[m")
             restart()
 
         except ServiceUnderMaintenance:
-            print("\n[\033[1;31mAtenção\033[m] \033[1;33mParece que o serviço está em manutenção, tente mais tarde!")
-            #break
+            # print("\n[\033[1;31mAtenção\033[m] \033[1;33mParece que o serviço está em manutenção, tente mais tarde!")
             restart()
 
         except:
-            print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
+            # print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
             restart()
-
-
-        """with open("accounts.json", "a+") as x:
-            acc = f'\n{{\n"email": "{email}",\n"password": "{password}",\n"device": "{device}"\n}},'
-            # acc = f'\n{{\n"email": "{email}",\n"password": "{password}",\n"device": "{device}"\n}},'
-            x.write(acc)
-    
-        with open("emails.txt", "a+") as c:
-            acc = f"{email}\n"
-            c.write(acc)"""
 
 
 def main():
