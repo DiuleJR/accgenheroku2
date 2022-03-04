@@ -80,7 +80,7 @@ app = Flask(__name__)
 @app.route('/', methods=["POST", "GET"])
 def home():
     while True:
-        contador = 1
+        contador = 0
         try:
 
             with open("device.json", "w") as f:
