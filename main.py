@@ -28,7 +28,7 @@ def nome_aleatorio():
 
 
 def api(url):
-    return requests.post("https://api-xmega11.herokuapp.com/", data={"text": url}).json()['captcha']
+    return requests.post("http://192.46.210.24:5000/captcha", data={"data": url}).json()['dick']
 
 
 def deviceId():
