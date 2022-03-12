@@ -32,7 +32,7 @@ def api(url):
 
 
 def deviceId():
-    return requests.get("http://forevercynical.com/generate/deviceid").text
+    return requests.get("https://device-xmega11.herokuapp.com/").text
 
 
 def gerar_aleatorio(size=16, chars=string.ascii_letters + string.digits):
