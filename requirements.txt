@@ -14,3 +14,4 @@ pyfiglet==0.8.post1
 json_minify
 flask
 heroku3
+amino.py
