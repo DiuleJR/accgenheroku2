@@ -1,6 +1,5 @@
 secmail==1.0.2
 requests==2.27.1
-amino.py==3.0.3
 Click==7.0
 gunicorn==19.9.0
 itsdangerous==1.1.0

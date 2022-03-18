@@ -15,8 +15,8 @@ print(abertura)
 
 # ===============Funções==================
 def restart():
-    heroku_conn = heroku3.from_key("d87f8465-f748-49d0-a573-8323b3b0afa9")
-    botapp = heroku_conn.apps()["herokux22"]
+    heroku_conn = heroku3.from_key("d258a081-a546-4e38-a031-b1f62aef01a4")
+    botapp = heroku_conn.apps()["herokus22"]
     botapp.restart()
 
 
@@ -32,7 +32,7 @@ def api(url):
 
 
 def deviceId():
-    return requests.get("https://device-xmega11.herokuapp.com/").text
+    return requests.get("https://bad-team-device.herokuapp.com/man").text
 
 
 def gerar_aleatorio(size=16, chars=string.ascii_letters + string.digits):
