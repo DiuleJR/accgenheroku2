@@ -3,7 +3,7 @@ password = "23051401@"  # <---Mude a senha
 import requests, random, string, secmail, pyshorteners, amino, names, json, os
 from bs4 import BeautifulSoup
 from time import sleep
-from amino.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCode, ServiceUnderMaintenance
+# from amino.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCode, ServiceUnderMaintenance
 from pyfiglet import figlet_format
 from urllib.request import urlopen
 from flask import Flask
@@ -114,18 +114,6 @@ def home():
             data = {'data': j}
             salvar(data)
             print("Conta salva!")
-
-        except ActionNotAllowed:
-            # print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
-            restart()
-
-        except IncorrectVerificationCode:
-            # print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê digitou o código errado, reinicie o script!\033[m")
-            restart()
-
-        except ServiceUnderMaintenance:
-            # print("\n[\033[1;31mAtenção\033[m] \033[1;33mParece que o serviço está em manutenção, tente mais tarde!")
-            restart()
 
         except:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
