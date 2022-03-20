@@ -4,9 +4,8 @@ import requests, random, string, secmail, pyshorteners,names, json, os
 from aminofix import Client
 from bs4 import BeautifulSoup
 from time import sleep
-from amino.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCode, ServiceUnderMaintenance
+from aminofix.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCode, ServiceUnderMaintenance
 from pyfiglet import figlet_format
-from urllib.request import urlopen
 from flask import Flask
 import heroku3
 
