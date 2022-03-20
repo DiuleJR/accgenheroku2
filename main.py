@@ -1,6 +1,7 @@
 password = "23051401@"  # <---Mude a senha
 
-import requests, random, string, secmail, pyshorteners, amino, names, json, os
+import requests, random, string, secmail, pyshorteners,names, json, os
+from aminofix import Client
 from bs4 import BeautifulSoup
 from time import sleep
 from amino.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCode, ServiceUnderMaintenance
@@ -18,6 +19,7 @@ def restart():
     heroku_conn = heroku3.from_key("d258a081-a546-4e38-a031-b1f62aef01a4")
     botapp = heroku_conn.apps()["herokus22"]
     botapp.restart()
+
 
 
 def nome_aleatorio():
@@ -85,7 +87,7 @@ def home():
             with open("device.json", "w") as f:
                 f.close()
 
-            client = amino.Client()
+            client = Client()
             email = gerar_email()
             nickname = nome_aleatorio() + '⁹⁹⁹'
             print(f"\nGerando email {email}")
