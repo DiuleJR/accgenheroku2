@@ -1,6 +1,6 @@
 password = "23051401@"  # <---Mude a senha
 
-import requests, random, string, secmail, pyshorteners,names, json, os
+import requests, random, string, secmail, pyshorteners, names, json, os
 from aminofix import Client
 from bs4 import BeautifulSoup
 from time import sleep
@@ -20,7 +20,6 @@ def restart():
     botapp.restart()
 
 
-
 def nome_aleatorio():
     nome = ''
     for i in names.get_first_name():
@@ -29,7 +28,7 @@ def nome_aleatorio():
 
 
 def api(url):
-    return requests.post("http://192.46.210.24:5000/captcha", data={"data": url}).json()['dick']
+    return requests.post("https://captcha-xmega11.herokuapp.com/", data={"text": url}).json()['captcha']
 
 
 def deviceId():
@@ -71,9 +70,9 @@ def salvar(data):
 
 
 # ==================Gerador=============================
-print("="*60)
+print("=" * 60)
 print("                                  accgen X Heroku 24/7")
-print("="*60)
+print("=" * 60)
 
 app = Flask(__name__)
 
