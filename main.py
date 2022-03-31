@@ -79,9 +79,9 @@ app = Flask(__name__)
 
 @app.route('/', methods=["POST", "GET"])
 def home():
+    contador = 0
+    five = 0
     while True:
-        contador = 0
-        five = 0
         try:
             if contador or five == 5:
                 restart()
