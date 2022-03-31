@@ -134,7 +134,6 @@ def home():
         except Exception as c:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
             print(c)
-            restart()
 
 
 def main():
