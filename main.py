@@ -82,6 +82,8 @@ def home():
     while True:
         contador = 0
         try:
+            if contador == 5:
+                restart()
             with open("device.json", "w") as f:
                 f.close()
 
@@ -131,8 +133,6 @@ def home():
             restart()
 
         except Exception as c:
-            if contador == 5:
-                restart()
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
             print(c)
             contador += 1
