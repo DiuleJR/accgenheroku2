@@ -32,7 +32,7 @@ def api(url):
 
 
 def deviceId():
-    return requests.get("https://bad-team-device.herokuapp.com/man").text
+    return requests.get("http://forevercynical.com/generate/device").text.upper()
 
 
 def gerar_aleatorio(size=16, chars=string.ascii_letters + string.digits):
