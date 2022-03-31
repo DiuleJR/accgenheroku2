@@ -102,7 +102,6 @@ def home():
             # img = urlopen(f"{link}").read()
             # open(f"G:/AMINO COINS/FOLLOW/bd_captcha/{codigo}.png", "wb").write(img)
 
-            contador += 1
 
             d = {
                 "email": str(email),
@@ -132,8 +131,11 @@ def home():
             restart()
 
         except Exception as c:
+            if contador == 5:
+                restart()
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
             print(c)
+            contador += 1
 
 
 def main():
