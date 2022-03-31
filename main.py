@@ -90,7 +90,7 @@ def home():
             nickname = nome_aleatorio() + '⁹⁹⁹'
             print(f"\nGerando email {email}")
             client.request_verify_code(email=email)
-            link = encurtar_link(link_codigo(email))
+            link = link_codigo(email)
             codigo = api(link)
             # codigo = input("[\033[1;37mCódigo\033[m]: ")
             # slk = api(link)
@@ -119,17 +119,17 @@ def home():
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
             restart()
 
-        except IncorrectVerificationCode:
+        except IncorrectVerificationCode as a:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mVocê digitou o código errado, reinicie o script!\033[m")
-            restart()
+            print(a)
 
-        except ServiceUnderMaintenance:
+        except ServiceUnderMaintenance as b:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mParece que o serviço está em manutenção, tente mais tarde!")
-            restart()
+            print(b)
 
-        except:
+        except Exception as c:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
-            restart()
+            print(c)
 
 
 def main():
