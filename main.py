@@ -4,7 +4,7 @@ import requests, random, string, secmail, pyshorteners, names, json, os
 from aminofix import Client
 from bs4 import BeautifulSoup
 from time import sleep
-from aminofix.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCode, ServiceUnderMaintenance
+from aminofix.lib.util.exceptions import ActionNotAllowed, IncorrectVerificationCode, ServiceUnderMaintenance, TooManyRequests
 from pyfiglet import figlet_format
 from flask import Flask
 import heroku3
@@ -126,6 +126,10 @@ def home():
         except ServiceUnderMaintenance as b:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mParece que o serviço está em manutenção, tente mais tarde!")
             print(b)
+
+        except TooManyRequests as d:
+            print(d)
+            restart()
 
         except Exception as c:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mErro desconhecido, tente reiniciar o script!")
