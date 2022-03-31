@@ -81,8 +81,9 @@ app = Flask(__name__)
 def home():
     while True:
         contador = 0
+        five = 0
         try:
-            if contador == 5:
+            if contador or five == 5:
                 restart()
             with open("device.json", "w") as f:
                 f.close()
@@ -104,7 +105,6 @@ def home():
             # img = urlopen(f"{link}").read()
             # open(f"G:/AMINO COINS/FOLLOW/bd_captcha/{codigo}.png", "wb").write(img)
 
-
             d = {
                 "email": str(email),
                 "password": str(password),
@@ -115,6 +115,7 @@ def home():
             data = {'data': j}
             salvar(data)
             print("Conta salva!")
+            five += 1
 
         except ActionNotAllowed:
             # print("\n[\033[1;31mAtenção\033[m] \033[1;33mLimite de contas criadas atingido, mude o VPN!\033[m")
