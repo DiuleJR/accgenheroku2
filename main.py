@@ -15,8 +15,8 @@ print(abertura)
 
 # ===============Funções==================
 def restart():
-    heroku_conn = heroku3.from_key("0d55dabc-27fb-4a7e-a89b-629e038d24e3")
-    botapp = heroku_conn.apps()["gerando5"]
+    heroku_conn = heroku3.from_key("de559681-5385-4c63-b1ac-5403460b14db")
+    botapp = heroku_conn.apps()["gerando1"]
     botapp.restart()
 
 
@@ -28,7 +28,8 @@ def nome_aleatorio():
 
 
 def api(url):
-    return requests.post("https://captcha-xmega11.herokuapp.com/", data={"text": url}).json()['captcha']
+    data = json.dumps({"text": url})
+    return requests.post("http://192.46.210.24:8000/dick", data=data).json()['captcha']
 
 
 def deviceId():
